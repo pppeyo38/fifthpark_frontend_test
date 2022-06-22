@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import styled from "styled-components"
 
 type Post = {
@@ -7,7 +7,9 @@ type Post = {
 	body: string;
 }
 
-export const Posts = () => {
+export const Posts = memo(() => {
+	console.log('post')
+
 	const [posts, setPosts] = useState<Post[]>([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -33,7 +35,7 @@ export const Posts = () => {
 			</PostsSection>
 		</>
 	)
-}
+})
 
 const PostsSection = styled.section`
 	width: 90%;
