@@ -1,4 +1,5 @@
 import { useEffect, useState, memo } from "react";
+import axios from "axios";
 import styled from "styled-components"
 
 type Post = {
@@ -11,13 +12,14 @@ export const Posts = memo(() => {
 	console.log('post')
 
 	const [posts, setPosts] = useState<Post[]>([]);
+
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch("http://localhost:3000/posts");
-      const data = await response.json();
-      setPosts(data);
-    };
-    fetchData();
+    axios.get('http://localhost:3000/posts')
+			.then((response) => {
+				console.log(response);
+				setPosts(response.data);
+			})
+			.catch(error => alert('Error'))
   }, []);
 
 	return (

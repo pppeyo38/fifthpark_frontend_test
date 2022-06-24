@@ -1,4 +1,5 @@
 import { useState, memo } from "react";
+import axios from "axios";
 import styled from "styled-components";
 
 type Data = {
@@ -25,20 +26,24 @@ export const Form = memo(() => {
     setData({ ...data, body: value });
 	}
 
+	const createPost = () => {
+		
+	}
+
 	return (
 		<>
-			<FormSection>
+			<FormSection onSubmit={createPost}>
 				<h3>FORM</h3>
 				<FormStyle>
 					<Labels htmlFor="">
 						TITLE
-						<input name="title" value={data.title} onChange={onChangeTitle} />
+						<input type="text" name="title" value={data.title} onChange={onChangeTitle} />
 					</Labels>
 					<Labels htmlFor="">
 						BODY
-						<input name="body" value={data.body} onChange={onChangeBody} />
+						<input type="text" name="body" value={data.body} onChange={onChangeBody} />
 					</Labels>
-					<Button>送信</Button>
+					<Button type="submit">CREATE</Button>
 				</FormStyle>
 			</FormSection>
 		</>
@@ -88,9 +93,9 @@ const Labels = styled.label`
 `;
 
 const Button = styled.button`
-	width: 80px;
+	width: 100px;
 	margin-top: 10px;
-	padding: 5px;
+	padding: 8px;
 	color: #fefefe;
 	font-size: 1em;
 	font-weight: bold;
