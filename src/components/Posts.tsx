@@ -16,7 +16,6 @@ export const Posts = memo(() => {
   useEffect(() => {
     axios.get('http://localhost:3000/posts')
 			.then((response) => {
-				console.log(response);
 				setPosts(response.data);
 			})
 			.catch(error => alert('Error'))

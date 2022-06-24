@@ -27,12 +27,19 @@ export const Form = memo(() => {
 	}
 
 	const createPost = () => {
-		
+		axios.post('http://localhost:3000/posts', {
+			title: data.title,
+			body: data.body
+		})
+		.then((response) => {
+			alert('投稿完了!')
+		})
+		.catch(error => alert('投稿失敗しました...'))
 	}
 
 	return (
 		<>
-			<FormSection onSubmit={createPost}>
+			<FormSection>
 				<h3>FORM</h3>
 				<FormStyle>
 					<Labels htmlFor="">
@@ -43,7 +50,7 @@ export const Form = memo(() => {
 						BODY
 						<input type="text" name="body" value={data.body} onChange={onChangeBody} />
 					</Labels>
-					<Button type="submit">CREATE</Button>
+					<Button type="submit" onClick={createPost}>CREATE</Button>
 				</FormStyle>
 			</FormSection>
 		</>
