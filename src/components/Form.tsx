@@ -19,11 +19,11 @@ export const Form = memo(() => {
 
 	const onChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const value = event.target.value;
-    setData({ ...data, title: value });
+    setData((prev) => ({ ...prev, title: value }));
 	}
 	const onChangeBody = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const value = event.target.value;
-    setData({ ...data, body: value });
+    setData((prev) => ({ ...prev, body: value }));
 	}
 
 	const createPost = () => {
