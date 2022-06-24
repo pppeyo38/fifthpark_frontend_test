@@ -40,13 +40,13 @@ export const Posts = memo(() => {
 				<h3>POSTS</h3>
 				{posts.map((post) => (
 					<PostsList key={post.id}>
-						<div>
-							<li>
+						<Post>
+							<div>
 								<h4>{post.title}</h4>
 								<p>{post.body}</p>
-							</li>
-						</div>
-						<img src="../src/images/delete.png" alt="削除" onClick={() => deletePost(post.id)} />
+							</div>
+							<img src="../src/images/delete.png" alt="削除" onClick={() => deletePost(post.id)} />
+						</Post>
 					</PostsList>
 				))}
 			</PostsSection>
@@ -71,9 +71,6 @@ const PostsSection = styled.section`
 `;
 
 const PostsList = styled.ul`
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
 	list-style: none;
 	background-color: #fff;
 	border-radius: 2px;
@@ -93,4 +90,10 @@ const PostsList = styled.ul`
 		object-fit: contain;
 		margin-right: 30px;
 	}
+`;
+
+
+const Post = styled.li`
+	display: flex;
+	justify-content: space-between;
 `;
