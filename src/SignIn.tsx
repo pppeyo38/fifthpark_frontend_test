@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth"
+import { auth } from "./firebase";
 import styled from "styled-components";
 
 type AccountData = {
@@ -24,8 +26,8 @@ export const SignIn = () => {
     setData((prev) => ({ ...prev, password: value }));
 	}
 
-	const signInEmail = () => {
-
+	const signInEmail = async () => {
+		await signInWithEmailAndPassword(auth, data.email, data.password);
 	}
 
 	return(
