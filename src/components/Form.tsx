@@ -13,8 +13,6 @@ const initialData: Data = {
 }
 
 export const Form = memo(() => {
-	console.log('form')
-
 	const [ data, setData ] = useState<Data>(initialData);
 
 	const onChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -79,7 +77,6 @@ const FormStyle = styled.form`
 	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.125);
 	margin: 0 0 1rem 0;
 	padding: 1rem;
-
 `;
 
 const Labels = styled.label`
