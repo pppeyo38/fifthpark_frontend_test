@@ -12,7 +12,7 @@ const initialData: AccountData = {
 	password: '',
 }
 
-export const SignIn = () => {
+export const SignUp = () => {
 	const [ data, setData ] = useState<AccountData>(initialData);
 
 	const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,15 +24,15 @@ export const SignIn = () => {
     setData((prev) => ({ ...prev, password: value }));
 	}
 
-	const signInEmail = () => {
+	const signUpEmail = () => {
 
 	}
 
 	return(
 		<>
-			<SignInPage>
-				<SignInFormCard>
-					<h2>SignIn</h2>
+			<SignUpPage>
+				<SignUpFormCard>
+					<h2>SignUp</h2>
 					<Labels>
 						Eメール
 						<input type="text" name="email" value={data.email} onChange={onChangeEmail} />
@@ -42,16 +42,16 @@ export const SignIn = () => {
 						<input type="password" name="password" value={data.password} onChange={onChangePw} />
 					</Labels>
 					<ButtonsWrap>
-						<Button type="submit" onClick={signInEmail}>SignIn</Button>
-						<Link to="/signup">SignUp</Link>
+						<Button type="submit" onClick={signUpEmail}>SignUp</Button>
+						<Link to="/signin">SignIn</Link>
 					</ButtonsWrap>
-				</SignInFormCard>
-			</SignInPage>
+				</SignUpFormCard>
+			</SignUpPage>
 		</>
 	)
 }
 
-const SignInPage =styled.section`
+const SignUpPage =styled.section`
 	width: 100vw;
 	height: 100vh;
 	display: flex;
@@ -59,7 +59,7 @@ const SignInPage =styled.section`
 	align-items: center;
 `;
 
-const SignInFormCard = styled.div`
+const SignUpFormCard = styled.div`
 	margin: 0 0 1rem 0;
 	padding: 2rem;
 	background-color: #fff;
