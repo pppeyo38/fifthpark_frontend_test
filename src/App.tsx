@@ -1,13 +1,12 @@
-import { Form } from "./components/Form";
-import { Posts } from "./components/Posts";
+import { BrowserRouter }from "react-router-dom";
+import { Router } from "./Router";
 
 const App = () => {
-  console.log('app')
-
   return (
     <>
-      <Form />
-      <Posts />
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
     </>
   );
 };
