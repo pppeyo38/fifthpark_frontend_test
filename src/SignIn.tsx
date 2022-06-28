@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth"
-import { auth } from "./firebase";
+import { Link, useNavigate } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { app } from "./firebase";
 import styled from "styled-components";
 
 type AccountData = {
@@ -15,7 +15,9 @@ const initialData: AccountData = {
 }
 
 export const SignIn = () => {
+	const auth = getAuth(app);
 	const [ data, setData ] = useState<AccountData>(initialData);
+	const navigate = useNavigate();
 
 	const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const value = event.target.value;
@@ -27,7 +29,15 @@ export const SignIn = () => {
 	}
 
 	const signInEmail = async () => {
-		await signInWithEmailAndPassword(auth, data.email, data.password);
+		await signInWithEmailAndPassword(auth, data.email, data.password)
+			.then((userCredential) => {
+				// Signed in
+				// const user = userCredential.user;
+				navigate("/");
+			})
+			.catch((error) => {
+				alert("ログインに失敗しました...")
+			});
 	}
 
 	return(
