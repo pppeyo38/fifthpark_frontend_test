@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./firebase";
 import styled from "styled-components";
@@ -16,6 +16,7 @@ const initialData: AccountData = {
 
 export const SignUp = () => {
 	const [ data, setData ] = useState<AccountData>(initialData);
+	const navigate = useNavigate();
 
 	const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const value = event.target.value;
@@ -26,9 +27,12 @@ export const SignUp = () => {
     setData((prev) => ({ ...prev, password: value }));
 	}
 
-	const signUpEmail = async () => {
-		await createUserWithEmailAndPassword(auth, data.email, data.password)
+	const SignUp = async () => {
+		await createUserWithEmailAndPassword(auth, data.email, data.password);
+		console.log("登録しました");
+		navigate("/");
 	}
+
 
 	return(
 		<>
@@ -44,7 +48,7 @@ export const SignUp = () => {
 						<input type="password" name="password" value={data.password} onChange={onChangePw} />
 					</Labels>
 					<ButtonsWrap>
-						<Button type="submit" onClick={signUpEmail}>SignUp</Button>
+						<Button type="submit" onClick={SignUp}>SignUp</Button>
 						<Link to="/signin">SignIn</Link>
 					</ButtonsWrap>
 				</SignUpFormCard>
