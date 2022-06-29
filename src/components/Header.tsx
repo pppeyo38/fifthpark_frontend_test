@@ -1,10 +1,14 @@
+import { useContext } from "react";
+import { AuthContext } from "../providers/AuthProvider";
 import styled from "styled-components";
 
 export const Header = () => {
+	const {currentUser} = useContext(AuthContext)
+
 	return (
 		<HeaderWrap>
 			<HeaderTitle>Fifth-park</HeaderTitle>
-			<UserIcon>うめうめ</UserIcon>
+			<UserIcon>{currentUser?.email}</UserIcon>
 		</HeaderWrap>
 	)
 }
