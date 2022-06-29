@@ -12,7 +12,7 @@ export const Header = () => {
 
 	const logout = () => {
 		auth.signOut();
-		navigate("signin");
+		navigate("/signin");
 	}
 
 	return (

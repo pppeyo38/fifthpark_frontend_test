@@ -1,5 +1,6 @@
 import { User, getAuth } from "firebase/auth";
 import { createContext, useEffect, useState, FC, ReactNode } from "react";
+import { Navigate } from "react-router-dom";
 
 type Props = {
 	children: ReactNode;
@@ -36,13 +37,14 @@ const AuthProvider: FC<Props> = ({children}) => {
 	if (signInCheck) {
     return (
       <AuthContext.Provider value={{ currentUser, signInCheck }}>
-        {children}
+        {signInCheck && children}
       </AuthContext.Provider>
     );
   } else {
 		// ログイン確認中
-    // 自分で作ったローディングコンポーネントをレンダリングする
-    return <></>;
+    return (
+      <></>
+    );
   }
 }
 

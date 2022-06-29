@@ -1,7 +1,8 @@
 import { Routes, Route } from "react-router-dom";
-import { Home }from "./Home";
-import { SignIn } from "./SignIn";
-import { SignUp } from "./SignUp";
+import { PrivateRoute } from "./PrivateRoute";
+import { Home }from "../Home";
+import { SignIn } from "../SignIn";
+import { SignUp } from "../SignUp";
 
 export const Router = () => {
 	return (
