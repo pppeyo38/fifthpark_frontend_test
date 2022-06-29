@@ -1,14 +1,27 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { getAuth } from "firebase/auth";
+import { app } from "../firebase";
 import { AuthContext } from "../providers/AuthProvider";
 import styled from "styled-components";
 
 export const Header = () => {
-	const {currentUser} = useContext(AuthContext)
+	const auth = getAuth(app);
+	const {currentUser} = useContext(AuthContext);
+	const navigate = useNavigate();
+
+	const logout = () => {
+		auth.signOut();
+		navigate("signin");
+	}
 
 	return (
 		<HeaderWrap>
 			<HeaderTitle>Fifth-park</HeaderTitle>
-			<UserIcon>{currentUser?.email}</UserIcon>
+			<UserWrap>
+				<UserEmail>{currentUser?.email}</UserEmail>
+				<p onClick={logout}>ログアウト</p>
+			</UserWrap>
 		</HeaderWrap>
 	)
 }
@@ -30,7 +43,16 @@ const HeaderTitle = styled.h1`
 	font-size: 2em;
 `;
 
-const UserIcon = styled.h3`
+const UserWrap = styled.div`
+	p {
+		margin: 0;
+		text-align: end;
+		font-size: 0.8rem;
+		color: #aaa;
+	}
+`;
+
+const UserEmail = styled.h3`
 	margin: 0;
 	color: #333;
 	font-size: 1rem;

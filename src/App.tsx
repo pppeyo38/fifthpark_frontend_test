@@ -1,12 +1,15 @@
 import { BrowserRouter }from "react-router-dom";
 import { Router } from "./Router";
+import { AuthProvider } from "./providers/AuthProvider";
 
 const App = () => {
   return (
     <>
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </AuthProvider>
     </>
   );
 };
