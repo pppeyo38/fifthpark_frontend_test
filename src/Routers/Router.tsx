@@ -7,7 +7,9 @@ import { SignUp } from "../SignUp";
 export const Router = () => {
 	return (
 		<Routes>
-			<Route path="/" element={<Home/>}/>
+			<Route path='/' element={<PrivateRoute/>}>
+				<Route path='/' element={<Home/>}/>
+			</Route>
 			<Route path="/signin" element={<SignIn/>}/>
 			<Route path="/signup" element={<SignUp/>}/>
 		</Routes>
