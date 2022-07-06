@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { app } from "./firebase";
 import styled from "styled-components";
 
 type AccountData = {
+	username: string;
 	email: string;
 	password: string;
 }
 
 const initialData: AccountData = {
+	username: '',
 	email: '',
 	password: '',
 }
@@ -18,6 +20,11 @@ export const SignUp = () => {
 	const auth = getAuth(app);
 	const [ data, setData ] = useState<AccountData>(initialData);
 	const navigate = useNavigate();
+
+	const onChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const value = event.target.value;
+    setData((prev) => ({ ...prev, username: value }));
+	}
 
 	const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const value = event.target.value;
@@ -30,9 +37,7 @@ export const SignUp = () => {
 
 	const SignUp = async () => {
 		await createUserWithEmailAndPassword(auth, data.email, data.password)
-			.then((userCredential) => {
-				// Signed in
-				// const user = userCredential.user;
+			.then(result => {
 				navigate("/");
 			})
 			.catch(() => {
@@ -46,6 +51,10 @@ export const SignUp = () => {
 			<SignUpPage>
 				<SignUpFormCard>
 					<h2>SignUp</h2>
+					<Labels>
+						ユーザー名
+						<input type="text" name="userName" value={data.username} onChange={onChangeName} />
+					</Labels>
 					<Labels>
 						Eメール
 						<input type="text" name="email" value={data.email} onChange={onChangeEmail} />

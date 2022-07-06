@@ -15,6 +15,8 @@ export const Header = () => {
 		navigate("/signin");
 	}
 
+	console.log(currentUser);
+
 	return (
 		<HeaderWrap>
 			<HeaderTitle>Fifth-park</HeaderTitle>
